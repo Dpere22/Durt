@@ -1,0 +1,73 @@
+﻿#if !defined(COMBINED_SHAPE_LIGHT_PASS)
+#define COMBINED_SHAPE_LIGHT_PASS
+
+half _HDREmulationScale;
+half _UseSceneLighting;
+half4 _RendererColor;
+
+half4 CombinedShapeLightShared(half4 color, half4 mask, half2 lightingUV, half2 worldUV)
+{
+    color = color * _RendererColor;
+
+#if USE_SHAPE_LIGHT_TYPE_0
+    half4 shapeLight0 = SAMPLE_TEXTURE2D(_ShapeLightTexture0, sampler_ShapeLightTexture0, lightingUV);
+    
+    if (any(_ShapeLightMaskFilter0))
+    {
+        float4 processedMask = (1 - _ShapeLightInvertedFilter0) * mask + _ShapeLightInvertedFilter0 * (1 - mask);
+        shapeLight0 *= dot(processedMask, _ShapeLightMaskFilter0);
+    }
+
+    half4 shapeLight0Modulate = shapeLight0 * _ShapeLightBlendFactors0.x;
+    half4 shapeLight0Additive = shapeLight0 * _ShapeLightBlendFactors0.y;
+#else
+    half4 shapeLight0Modulate = 0;
+    half4 shapeLight0Additive = 0;
+#endif
+
+#if USE_SHAPE_LIGHT_TYPE_1
+    half4 shapeLight1 = SAMPLE_TEXTURE2D(_ShapeLightTexture1, sampler_ShapeLightTexture1, lightingUV);
+
+    if (any(_ShapeLightMaskFilter1))
+    {
+        float4 processedMask = (1 - _ShapeLightInvertedFilter1) * mask + _ShapeLightInvertedFilter1 * (1 - mask);
+        shapeLight1 *= dot(processedMask, _ShapeLightMaskFilter1);
+    }
+
+    half4 shapeLight1Modulate = shapeLight1 * _ShapeLightBlendFactors1.x;
+    half4 shapeLight1Additive = shapeLight1 * _ShapeLightBlendFactors1.y;
+#else
+    half4 shapeLight1Modulate = 0;
+    half4 shapeLight1Additive = 0;
+#endif
+    
+#if USE_SHAPE_LIGHT_TYPE_2
+    half4 visionMask = SAMPLE_TEXTURE2D(_ShapeLightTexture2, sampler_ShapeLightTexture2, lightingUV);
+
+    if (any(_ShapeLightMaskFilter2))
+    {
+        visionMask = 1;
+    }
+    
+    visionMask = min(visionMask, 1);
+#else
+    half4 visionMask = 1;
+#endif
+
+    half4 finalOutput;
+#if !USE_SHAPE_LIGHT_TYPE_0 && !USE_SHAPE_LIGHT_TYPE_1 && !USE_SHAPE_LIGHT_TYPE_2
+    finalOutput = color;
+#else
+    half4 finalModulate = shapeLight0Modulate  + shapeLight1Modulate;
+    half4 finalAdditve = shapeLight0Additive  + shapeLight1Additive;
+    finalOutput = _HDREmulationScale * (color * finalModulate + finalAdditve);
+#endif
+    // Update the alpha calculation to detect light even with transparency
+    finalOutput.a = max(color.a * visionMask, 0.001); // Ensure the alpha isn't zero
+
+    
+    finalOutput = finalOutput * _UseSceneLighting + (1 - _UseSceneLighting) * color;
+    
+    return max(0, finalOutput);
+}
+#endif

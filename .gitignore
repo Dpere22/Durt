@@ -1,0 +1,39 @@
+# Unity-specific
+Library/
+Temp/
+Logs/
+Obj/
+UserSettings/
+
+# Build output
+Build/
+Builds/
+
+# IDE-specific
+*.csproj
+*.sln
+*.pidb
+*.unityproj
+*.booproj
+*.idea
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Log and temporary files
+*.log
+*.tmp
+
+# Build artifacts
+*.apk
+*.aab
+*.exe
+*.app
+*.xcodeproj
+*.ipa
+
+# Version control metadata
+.git/
+.svn/
+.hg/
