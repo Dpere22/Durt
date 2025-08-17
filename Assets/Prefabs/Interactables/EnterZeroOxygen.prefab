@@ -124,7 +124,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.24, y: 10.24}
+    oldSize: {x: 2.048, y: 2.048}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -145,7 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca384b1d671c3446901a97d312037d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 3111828151975478747, guid: d08ce8e8e7ad8e94a8480946e9c183fd, type: 3}
+  dialogueText: Entering Zero Oxygen Area
+  dialogueColor: {r: 0.8301887, g: 0, b: 0, a: 1}
 --- !u!1001 &1977085747996506894
 PrefabInstance:
   m_ObjectHideFlags: 0

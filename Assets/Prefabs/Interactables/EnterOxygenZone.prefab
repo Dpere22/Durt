@@ -146,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca384b1d671c3446901a97d312037d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 8605558259337052818, guid: 53d79434670a5814ab98b5e3aa4b9c9d, type: 3}
+  dialogueText: Entering Oxygen Safe Area
+  dialogueColor: {r: 0, g: 0.754717, b: 0.0053195236, a: 1}
 --- !u!114 &1078528523497349209
 MonoBehaviour:
   m_ObjectHideFlags: 0

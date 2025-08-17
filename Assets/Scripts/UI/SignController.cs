@@ -1,22 +1,19 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SignController : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Canvas canvas; //the prefab
-    private Canvas _spawnedCanvas;
-    private void OnTriggerEnter2D(Collider2D other)
+    public class SignController : MonoBehaviour
     {
-        if (other.CompareTag("Player") && canvas != null && _spawnedCanvas == null)
+        [TextArea] public string dialogueText;
+        [SerializeField] private Color dialogueColor = Color.black;
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            _spawnedCanvas = Instantiate(canvas, transform.position, Quaternion.identity);
+            DialogueManager.DialogueStarted(dialogueText, dialogueColor);
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player") || _spawnedCanvas == null) return;
-        Destroy(_spawnedCanvas.gameObject);
-        _spawnedCanvas = null;
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            DialogueManager.DialogueEnded();
+        }
     }
 }
