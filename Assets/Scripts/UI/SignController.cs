@@ -8,12 +8,14 @@ namespace UI
         [SerializeField] private Color dialogueColor = Color.black;
         private void OnTriggerEnter2D(Collider2D other)
         {
-            DialogueManager.DialogueStarted(dialogueText, dialogueColor);
+            if (other.CompareTag("Player"))
+                DialogueManager.DialogueStarted(dialogueText, dialogueColor);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            DialogueManager.DialogueEnded();
+            if (other.CompareTag("Player"))
+                DialogueManager.DialogueEnded();
         }
     }
 }
