@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,7 +47,7 @@ public class LoseManager : MonoBehaviour
     public static void LoseGame() 
     {
         gameOverScreen.SetActive(true);
-        PauseScreen.isPaused = true;
+        PauseScreen.IsPaused = true;
         TriggerDeath();
         //Time.timeScale = 0f;
     }
@@ -55,7 +56,7 @@ public class LoseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameOverScreen.SetActive(false);
-        PauseScreen.isPaused = false;
+        PauseScreen.IsPaused = false;
         SceneManager.LoadScene("MainMenu");
     }
     
@@ -65,7 +66,7 @@ public class LoseManager : MonoBehaviour
         _timerManager.RegainOxygen();
         _playerMovement.Respawn();
         TriggerRespawn();
-        PauseScreen.isPaused = false;
+        PauseScreen.IsPaused = false;
         gameOverScreen.SetActive(false);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,13 +24,13 @@ public class WinManager : MonoBehaviour
     {
         playerWon = false;
         Time.timeScale = 0f;
-        PauseScreen.isPaused = true;
+        PauseScreen.IsPaused = true;
         winScreen.SetActive(true);
     }
 
     public void Retry() 
     {
-        PauseScreen.isPaused = false;
+        PauseScreen.IsPaused = false;
         winScreen.SetActive(false);
         Time.timeScale = 1f;
         var currentScene = SceneManager.GetActiveScene();
@@ -38,7 +39,7 @@ public class WinManager : MonoBehaviour
 
     public void MainMenu() 
     {
-        PauseScreen.isPaused = false;
+        PauseScreen.IsPaused = false;
         winScreen.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
@@ -51,14 +52,14 @@ public class WinManager : MonoBehaviour
         int nextSceneIndex = currentSceneIndex + 1;
         if (nextSceneIndex < totalScenes - 1 )
         {
-            PauseScreen.isPaused = false;
+            PauseScreen.IsPaused = false;
             winScreen.SetActive(false);
             Time.timeScale = 1f;
             LevelLoad(nextSceneIndex);
         }
         else if (nextSceneIndex == totalScenes-1) //Credits should not need loading
         {
-            PauseScreen.isPaused = false;
+            PauseScreen.IsPaused = false;
             winScreen.SetActive(false);
             Time.timeScale = 1f;
             SceneManager.LoadScene(nextSceneIndex);
@@ -71,7 +72,7 @@ public class WinManager : MonoBehaviour
 
     public void StartGame()
     {
-        PauseScreen.isPaused = false;
+        PauseScreen.IsPaused = false;
         winScreen.SetActive(false);
         Time.timeScale = 1f;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

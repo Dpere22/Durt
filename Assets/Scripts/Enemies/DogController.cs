@@ -3,6 +3,7 @@ using UnityEngine;
 using GOSM;
 using System;
 using System.Collections;
+using UI;
 using UnityEngine.Serialization;
 
 
@@ -513,7 +514,7 @@ public class DogController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collided = collision.gameObject;
-        if (collided.CompareTag("Player") && !PauseScreen.isPaused)
+        if (collided.CompareTag("Player") && !PauseScreen.IsPaused)
         {
             KillPlayer();
         }

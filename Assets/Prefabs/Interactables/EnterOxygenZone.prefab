@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: Entering Oxygen Safe Area
-  dialogueColor: {r: 0, g: 0.754717, b: 0.0053195236, a: 1}
+  dialogueColor: {r: 0, g: 0.48427665, b: 0.0025222357, a: 1}
 --- !u!114 &1078528523497349209
 MonoBehaviour:
   m_ObjectHideFlags: 0
