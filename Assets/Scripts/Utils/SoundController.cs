@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -125,7 +126,7 @@ public GameObject spotlightObject;
 
     private void CheckSound()
     {
-        if (PauseScreen.isPaused)
+        if (PauseScreen.IsPaused)
         {
             audioSource.Stop();
         }

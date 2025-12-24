@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -138,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ClimbingAnimChecks()
     {
-        if (PauseScreen.isPaused)
+        if (PauseScreen.IsPaused)
         {
             playerWalking.Stop();
         }

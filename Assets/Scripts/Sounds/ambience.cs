@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 public class ambience : MonoBehaviour
@@ -12,7 +13,7 @@ public class ambience : MonoBehaviour
     }
     private void Update()
     {
-        if (PauseScreen.isPaused)
+        if (PauseScreen.IsPaused)
         {
             ambientPlayer.Stop(); //also ghetto
         }
@@ -21,7 +22,7 @@ public class ambience : MonoBehaviour
     {
         while (true)
         {
-            if (!PauseScreen.isPaused)
+            if (!PauseScreen.IsPaused)
             {
                 ambientPlayer.Play();
             }

@@ -1,57 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseScreen : MonoBehaviour
+namespace UI
 {
-    public static bool isPaused;
-
-    private GameObject pauseMenu;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class PauseScreen : MonoBehaviour
     {
-        pauseMenu = GameObject.FindGameObjectsWithTag("PauseMenu")[0];
-        pauseMenu.SetActive(false);
-    }
+        public static bool IsPaused;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (InputManager.PauseWasPressed) 
+        private GameObject _pauseMenu;
+
+
+        // Start is called before the first frame update
+        void Start()
         {
-            if (!isPaused) 
+            _pauseMenu = GameObject.FindGameObjectsWithTag("PauseMenu")[0];
+            _pauseMenu.SetActive(false);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (InputManager.PauseWasPressed) 
             {
-                PauseGame();
-            }
-            else 
-            {
-                ResumeGame();
+                if (!IsPaused) 
+                {
+                    PauseGame();
+                }
+                else 
+                {
+                    ResumeGame();
+                }
             }
         }
-    }
 
-    void PauseGame()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
-        Actions.OnPause?.Invoke();
-    }
+        void PauseGame()
+        {
+            _pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+            IsPaused = true;
+            Actions.OnPause?.Invoke();
+        }
 
-    public void ResumeGame()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;   
-        Actions.OnUnpause?.Invoke();
-    }
+        public void ResumeGame()
+        {
+            _pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+            IsPaused = false;   
+            Actions.OnUnpause?.Invoke();
+        }
 
-    public void MainMenu()
-    {
-        ResumeGame();
-        SceneManager.LoadScene("MainMenu");
+        public void MainMenu()
+        {
+            ResumeGame();
+            SceneManager.LoadScene(0);
+        }
     }
 }

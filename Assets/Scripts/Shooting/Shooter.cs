@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -35,7 +36,7 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if (!InputManager.LeftClick || !canFire || PauseScreen.isPaused || _playerMovement.isClimbing) return;
+        if (!InputManager.LeftClick || !canFire || PauseScreen.IsPaused || _playerMovement.isClimbing) return;
         gunSound.PlayOneShot(gunshotSound);
         canFire = false;
 
